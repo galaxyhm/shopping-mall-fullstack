@@ -4,8 +4,22 @@ on:
   push:
     branches: [ main, develop ]
     tags: [ 'v*' ]
+    paths:
+      - 'shoppingmall/**'
+      - 'Dockerfile'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'main.py'
+      - '.github/workflows/docker-build-push.yml'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'shoppingmall/**'
+      - 'Dockerfile'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - 'main.py'
+      - '.github/workflows/docker-build-push.yml'
 
 env:
   # Harbor 레지스트리 설정
