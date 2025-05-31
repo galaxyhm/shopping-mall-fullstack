@@ -22,6 +22,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Debug environment variables
+      run: |
+        echo "Registry: ${{ env.REGISTRY }}"
+        echo "Project: ${{ env.PROJECT_NAME }}"
+        echo "Image: ${{ env.IMAGE_NAME }}"
+        echo "Full image path: ${{ env.REGISTRY }}/${{ env.PROJECT_NAME }}/${{ env.IMAGE_NAME }}"
+        
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
       

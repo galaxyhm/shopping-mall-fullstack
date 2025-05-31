@@ -5,9 +5,9 @@ on:
     branches: [ main ]
 
 env:
-  REGISTRY: your-harbor-registry.com
+  REGISTRY: ${{ secrets.HARBOR_REGISTRY }}
   IMAGE_NAME: shoppingmall-django
-  PROJECT_NAME: your-project
+  PROJECT_NAME: ${{ secrets.HARBOR_PROJECT }}
 
 jobs:
   build:
@@ -16,6 +16,24 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Debug environment variables
+      run: |
+        echo "Registry: ${{ env.REGISTRY }}"
+        echo "Project: ${{ env.PROJECT_NAME }}"
+        echo "Image: ${{ env.IMAGE_NAME }}"
+        echo "Full tag: ${{ env.REGISTRY }}/${{ env.PROJECT_NAME }}/${{ env.IMAGE_NAME }}:latest"
+        
+    - name: Validate environment variables
+      run: |
+        if [ -z "${{ env.REGISTRY }}" ]; then
+          echo "Error: REGISTRY is empty"
+          exit 1
+        fi
+        if [ -z "${{ env.PROJECT_NAME }}" ]; then
+          echo "Error: PROJECT_NAME is empty"
+          exit 1
+        fi
     
     - name: Login to Harbor
       run: |
