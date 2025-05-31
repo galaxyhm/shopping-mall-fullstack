@@ -1,11 +1,12 @@
 [project]
 name = "shoppingmall-django"
 version = "0.1.0"
-description = "Add your description here"
+description = "shopping mall"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<4"
 dependencies = [
     "django==5.2.1",
     "django-environ>=0.12.0",
+    "gunicorn>=23.0.0",
     "psycopg[binary]>=3.2.9",
 ]
